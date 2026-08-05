@@ -8,8 +8,8 @@ Applications to the Minimum Spanning Tree Problem", arXiv:2605.10542.
 Terminology (see the paper for full definitions):
     EUL  Exact Upper LP     - Section 3,  Theorem 7,  constraints (1)-(2)
     ELL  Exact Lower LP     - Section 4,  Theorem 10, constraint  (3)
-    ILL  Include Lower LP   - Section 4,  Theorem 13, constraint  (5)
-    TLL  Tolerance Lower LP - Section 4,  Theorem 13, constraints (6)-(7)
+    ILL  Include Lower LP   - Section 4,  Theorem 13, constraint  (4)
+    TLL  Tolerance Lower LP - Section 4,  Theorem 13, constraints (5)-(6)
 
 A "problem_func" callback represents the combinatorial sum problem (CSP)
 being analyzed. It must have the signature
