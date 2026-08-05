@@ -46,6 +46,29 @@ Write your own `problem_func(instance, given, banned) -> (solution, cost)`
 to apply the tolerance LPs to a different CSP; `cost` must be `float('inf')`
 when `given`/`banned` make the instance infeasible.
 
+## Generating test instances
+
+Three generator scripts create random instances in the format each `read_*`
+function expects. All three follow the same generate → validity-check →
+retry-until-valid → write pattern, so a generated instance is always usable
+without further checking:
+
+| Script | Usage | Guarantees |
+|---|---|---|
+| `gen_mstp.py` | `python gen_mstp.py [fname] [n] [k] [lb] [ub]` | `n` vertices, `k` edges chosen from the `n*(n-1)/2` possible ones, costs uniform in `[lb, ub]`; retries until the graph is **connected**. |
+| `gen_lap.py` | `python gen_lap.py [fname] [n] [lb] [ub]` | `n x n` cost matrix, every cost uniform in `[lb, ub]`; no retry needed — a complete cost matrix is always feasible, so there's no `k`. |
+| `gen_spp.py` | `python gen_spp.py [fname] [n] [k] [lb] [ub]` | `n` vertices, `k` arcs chosen from the `n*(n-1)/2` possible *forward* arcs (arcs only ever go from a lower-indexed vertex to a higher one, so the graph is acyclic by construction), costs uniform in `[lb, ub]`. Source is fixed at vertex `1` and target at vertex `n` (1-indexed); retries until the target is **reachable** from the source. |
+
+```bash
+python gen_mstp.py example_instances/mstp.txt 8 12 1 10
+python gen_lap.py example_instances/lap.txt 5 1 10
+python gen_spp.py example_instances/spp.txt 8 10 1 10
+```
+
+Note `gen_spp.py` doesn't take `s`/`t` as parameters — they're always vertex
+`1` and vertex `n` in the output file. If you need a different source/target,
+adjust the call to `write_spp` at the bottom of the script.
+
 ## Usage
 
 ```bash
