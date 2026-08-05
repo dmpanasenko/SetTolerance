@@ -630,7 +630,6 @@ def compute_all_tolerances_tll(instance, elems, problem_func, timer=None):
     start_t = time()
     S_star, c_star = problem_func(instance, [], [])
     for num, E in enumerate((e for e in powerset(elems) if e), start=1):
-        print(num)
         tll(instance, list(E), problem_func, S_star, c_star, timer)
     print(f"TLL run time (no rec): {time() - start_t:.3f}")
     if timer is not None:
