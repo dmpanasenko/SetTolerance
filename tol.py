@@ -479,9 +479,10 @@ def compute_all_tolerances_ell(instance, elems, problem_func, timer=None):
     for E in powerset(elems):
         if E:
             ell(instance, list(E), problem_func, S_star, c_star, timer)
-    print(f"ELL run time (no rec): {time() - start_t:.3f}")
+    end_t = time() - start_t
+    print(f"ELL run time (no rec): {end_t:.3f}")
     if timer is not None:
-        print(f"LP solving time: {timer[0]:.3f}")
+        print(f"LP solving time: {timer[0]:.3f}, supporting time: {end_t - timer[0]:.3f}")
     return
 
 
@@ -522,9 +523,10 @@ def compute_all_tolerances_ill(instance, elems, problem_func, timer=None):
     for E in powerset(elems):
         if E:
             ill(instance, list(E), problem_func, S_star, c_star, timer)
-    print(f"ILL run time (no rec): {time() - start_t:.3f}")
+    end_t = time() - start_t
+    print(f"ILL run time (no rec): {end_t:.3f}")
     if timer is not None:
-        print(f"LP solving time: {timer[0]:.3f}")
+        print(f"LP solving time: {timer[0]:.3f}, supporting time: {end_t - timer[0]:.3f}")
     return
 
 
@@ -574,9 +576,10 @@ def compute_all_tolerances_ill_rec(instance, elems, problem_func, timer=None):
     for E in powerset(elems):
         if E:
             ill_rec(instance, list(E), problem_func, c_star, fc_plus_cache, timer)
-    print(f"ILL run time (rec): {time() - start_t:.3f}")
+    end_t = time() - start_t
+    print(f"ILL run time (rec): {end_t:.3f}")
     if timer is not None:
-        print(f"LP solving time: {timer[0]:.3f}")
+        print(f"LP solving time: {timer[0]:.3f}, supporting time: {end_t - timer[0]:.3f}")
     return
 
 
@@ -629,11 +632,14 @@ def compute_all_tolerances_tll(instance, elems, problem_func, timer=None):
     """Compute l'_P(E) (via TLL, no caching) for every non-empty subset of `elems`."""
     start_t = time()
     S_star, c_star = problem_func(instance, [], [])
-    for num, E in enumerate((e for e in powerset(elems) if e), start=1):
+    for E in powerset(elems):
+        if not E:
+            continue
         tll(instance, list(E), problem_func, S_star, c_star, timer)
-    print(f"TLL run time (no rec): {time() - start_t:.3f}")
+    end_t = time() - start_t
+    print(f"TLL run time (no rec): {end_t:.3f}")
     if timer is not None:
-        print(f"LP solving time: {timer[0]:.3f}")
+        print(f"LP solving time: {timer[0]:.3f}, supporting time: {end_t - timer[0]:.3f}")
     return
 
 
@@ -689,7 +695,8 @@ def compute_all_tolerances_tll_rec(instance, elems, problem_func, timer=None):
             continue
         _, cost = tll_rec(instance, list(E), problem_func, c_star, tolerances_cache, timer)
         tolerances_cache[tuple(sorted(E))] = cost
-    print(f"TLL run time (rec): {time() - start_t:.3f}")
+    end_t = time() - start_t
+    print(f"TLL run time (rec): {end_t:.3f}")
     if timer is not None:
-        print(f"LP solving time: {timer[0]:.3f}")
+        print(f"LP solving time: {timer[0]:.3f}, supporting time: {end_t - timer[0]:.3f}")
     return
