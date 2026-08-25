@@ -17,8 +17,8 @@ objective value is unchanged (lower). See the paper for formal definitions.
 |-----------------------|------------|--------------------------|-------|
 | `eul`                 | EUL        | upper tolerance          | Theorem 7, constraints (1)-(2) |
 | `ell`                 | ELL        | lower tolerance          | Theorem 10, constraint (3) |
-| `ill` / `ill_rec`     | ILL        | lower tolerance          | Theorem 13, constraint (4); `_rec` caches `fc(D+(F))` across subsets |
-| `tll` / `tll_rec`     | TLL        | lower tolerance          | Theorem 13, constraints (5)-(6); `_rec` caches tolerances across subsets |
+| `ill` / `ill_rec`     | ILL        | lower tolerance          | Theorem 13, constraint (94); `_rec` caches `fc(D+(F))` across subsets |
+| `tll` / `tll_rec`     | TLL        | lower tolerance          | Theorem 13, constraints (95)-(96); `_rec` caches tolerances across subsets |
 
 ELL, ILL and TLL are all provably equal (Theorem 13). 
 
