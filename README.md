@@ -2,8 +2,8 @@
 
 Reference implementation accompanying:
 
-> G. Jäger, D. Panasenko, "Computation of Set Tolerances with Applications
-> to the Minimum Spanning Tree Problem", [arXiv:2605.10542](https://arxiv.org/abs/2605.10542).
+> G. Jäger, D. Panasenko, "Algorithms for Computing Set Tolerances:
+> Theory, Computational Analysis and Applications", [arXiv:2605.10542](https://arxiv.org/abs/2605.10542).
 
 Given a combinatorial sum problem (CSP) and a subset `E` of its ground set,
 this code computes the **regular set upper/lower tolerance** of `E`: the

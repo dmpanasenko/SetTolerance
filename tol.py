@@ -2,8 +2,8 @@
 
 Reference implementation for:
 
-G. Jager, D. Panasenko, "Computation of Set Tolerances with
-Applications to the Minimum Spanning Tree Problem", arXiv:2605.10542.
+G. Jager, D. Panasenko, "Algorithms for Computing Set Tolerances: 
+Theory, Computational Analysis and Applications", arXiv:2605.10542.
 
 Terminology (see the paper for full definitions):
     EUL  Exact Upper LP     - Section 3,  Theorem 7,  constraints (1)-(2)
