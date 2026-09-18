@@ -24,9 +24,9 @@ ELL, ILL and TLL are all provably equal (Theorem 13).
 
 When computing the tolerance for *every*
 subset of an `m`-element ground set, ELL needs `3^m` CSP solves in total
-while the recursive ILL/TLL variants need only `2^m` (Remark 5) — use
-`compute_all_tolerances_ill_rec` / `_tll_rec` rather than `_ell` for that
-case.
+while the recursive ILL/TLL variants need only `2^m` (Remark 5). 
+Use `compute_all_tolerances_ill_rec` / `_tll_rec` rather than `_ell` 
+for that case.
 
 ## Problem instances
 
@@ -56,7 +56,7 @@ without further checking:
 | Script | Usage | Guarantees |
 |---|---|---|
 | `gen_mstp.py` | `python gen_mstp.py [fname] [n] [k] [lb] [ub]` | `n` vertices, `k` edges chosen from the `n*(n-1)/2` possible ones, costs uniform in `[lb, ub]`; retries until the graph is **connected**. |
-| `gen_lap.py` | `python gen_lap.py [fname] [n] [lb] [ub]` | `n x n` cost matrix, every cost uniform in `[lb, ub]`; no retry needed — a complete cost matrix is always feasible, so there's no `k`. |
+| `gen_lap.py` | `python gen_lap.py [fname] [n] [lb] [ub]` | `n x n` cost matrix, every cost uniform in `[lb, ub]`; no retry needed, a complete cost matrix is always feasible. |
 | `gen_spp.py` | `python gen_spp.py [fname] [n] [k] [lb] [ub]` | `n` vertices, `k` arcs chosen from the `n*(n-1)/2` possible *forward* arcs (arcs only ever go from a lower-indexed vertex to a higher one, so the graph is acyclic by construction), costs uniform in `[lb, ub]`. Source is fixed at vertex `1` and target at vertex `n` (1-indexed); retries until the target is **reachable** from the source. |
 
 ```bash
@@ -65,7 +65,7 @@ python gen_lap.py example_instances/lap.txt 5 1 10
 python gen_spp.py example_instances/spp.txt 8 10 1 10
 ```
 
-Note `gen_spp.py` doesn't take `s`/`t` as parameters — they're always vertex
+Note `gen_spp.py` does not take `s`/`t` as parameters, they are always vertex
 `1` and vertex `n` in the output file. If you need a different source/target,
 adjust the call to `write_spp` at the bottom of the script.
 
@@ -103,4 +103,4 @@ Example instances for each of the three implemented CSPs are located in the `/ex
 
 Every method here solves at least one LP per *subset* of the ground set
 passed to it. This is fine for a handful of elements but grows
-exponentially — see the complexity comparison in Remark 5.
+exponentially: see the complexity comparison in Remark 5.
