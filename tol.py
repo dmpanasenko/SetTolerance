@@ -194,6 +194,8 @@ def mstp(graph, given, banned):
                       `given`/`banned`.
     """
     n = len(graph)
+    given_set = {tuple(e) for e in given}
+    banned_set = {tuple(e) for e in banned}
     edges = [[[i, j], -1] for i, j in given]
 
     big_cost = 0
@@ -201,7 +203,7 @@ def mstp(graph, given, banned):
         for j in range(i + 1, n):
             if graph[i][j] != -1:
                 big_cost += graph[i][j]
-                if [i, j] in given or [i, j] in banned:
+                if (i, j) in given_set or (i, j) in banned_set:
                     continue
                 edges.append([[i, j], graph[i][j]])
 
