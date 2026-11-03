@@ -402,7 +402,8 @@ def eul(instance, E, problem_func, S_star=None, c_star=None, timer=None):
     if c_star == float('inf'):
         return None, float('inf')
 
-    E_prime_inds = [i for i in range(k) if E[i] in S_star]
+    S_set = {tuple(e) for e in S_star}
+    E_prime_inds = [i for i in range(k) if tuple(E[i]) in S_set]
 
     A, b, Aeq, beq = [], [], [], []
     for F in powerset(E):
